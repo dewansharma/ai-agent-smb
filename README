@@ -1,0 +1,272 @@
+# AI Agent for Small & Medium Businesses (SMBs)
+
+## Overview
+
+AI Agent for SMBs is an end-to-end business intelligence and automation platform that combines AI-powered analytics, workflow automation, and modern web technologies to help small and medium-sized businesses make data-driven decisions.
+
+The platform allows businesses to collect operational data, automatically process it through AI workflows, generate actionable insights, and visualize results through an interactive dashboard.
+
+This project demonstrates full-stack development, workflow automation, cloud database integration, AI-powered analytics, and modern SaaS architecture.
+
+---
+
+## Key Features
+
+### AI-Powered Business Insights
+
+* Automated sentiment analysis
+* AI-generated business recommendations
+* Trend detection and performance monitoring
+* Natural language insight generation
+
+### Workflow Automation
+
+* Automated data processing using n8n
+* Event-driven workflow execution
+* Database-triggered automations
+* AI enrichment pipelines
+
+### Analytics Dashboard
+
+* Interactive KPI monitoring
+* Business performance visualization
+* Real-time insight updates
+* Historical trend analysis
+
+### Database Integration
+
+* Supabase backend
+* Secure data storage
+* Real-time data synchronization
+* Scalable cloud architecture
+
+### Modern Frontend
+
+* React-based dashboard
+* Responsive UI
+* Component-driven architecture
+* Fast Vite build system
+
+---
+
+## System Architecture
+
+```text
+Frontend (React + Vite)
+           │
+           ▼
+     Supabase Database
+           │
+           ▼
+      n8n Workflows
+           │
+           ▼
+      AI Processing
+           │
+           ▼
+ Generated Insights
+           │
+           ▼
+     Supabase Storage
+           │
+           ▼
+ Frontend Dashboard
+```
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* JavaScript
+* Tailwind CSS
+
+### Backend & Database
+
+* Supabase
+* PostgreSQL
+
+### Automation
+
+* n8n
+* Docker
+
+### AI Integration
+
+* OpenAI API
+
+### Development Tools
+
+* Git
+* GitHub
+* Docker Desktop
+
+---
+
+## Project Structure
+
+```text
+ai-agent-smb/
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── n8n/
+│   ├── workflows/
+│   └── docker-compose.yml
+│
+├── docs/
+│   ├── architecture.md
+│   └── screenshots/
+│
+├── .env.example
+├── .gitignore
+└── README.md
+```
+
+---
+
+## Workflow Overview
+
+### Data Collection
+
+Business data is submitted through the frontend application and stored in Supabase.
+
+### Automation Trigger
+
+Database events trigger n8n workflows automatically.
+
+### AI Processing
+
+Data is enriched and analyzed using AI services to generate insights, sentiment scores, and recommendations.
+
+### Storage
+
+Processed results are stored back into Supabase.
+
+### Visualization
+
+The dashboard retrieves analytics and presents them through an intuitive user interface.
+
+---
+
+## Local Setup
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/ai-agent-smb.git
+cd ai-agent-smb
+```
+
+### 2. Install Frontend Dependencies
+
+```bash
+cd frontend
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env` file using `.env.example`.
+
+Example:
+
+```env
+VITE_SUPABASE_URL=YOUR_SUPABASE_URL
+VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_KEY
+OPENAI_API_KEY=YOUR_OPENAI_KEY
+```
+
+### 4. Start Frontend
+
+```bash
+npm run dev
+```
+
+### 5. Start n8n
+
+```bash
+docker compose up -d
+```
+
+### 6. Open Application
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+n8n:
+
+```text
+http://localhost:5678
+```
+
+---
+
+## Screenshots
+
+### Dashboard
+
+(Add dashboard screenshot here)
+
+### Analytics Page
+
+(Add analytics screenshot here)
+
+### n8n Workflow
+
+(Add workflow screenshot here)
+
+---
+
+## Future Enhancements
+
+* Multi-tenant architecture
+* User authentication and role management
+* Predictive analytics
+* Advanced AI agents
+* Automated reporting
+* Email notification system
+* Tableau integration
+* LangChain agent orchestration
+* Customer support AI assistant
+
+---
+
+## Learning Outcomes
+
+This project demonstrates experience with:
+
+* Full-stack application development
+* AI integration
+* Workflow automation
+* REST APIs
+* Database design
+* Docker containerization
+* Cloud backend services
+* Business intelligence systems
+* SaaS architecture patterns
+
+---
+
+## Author
+
+Dewansh Sharma
+
+Computing and Information Technologies Student | AI & Automation Enthusiast
+
+Focused on building AI-powered solutions, workflow automation systems, and business intelligence platforms that solve real-world problems.
+
+---
+
+## License
+
+This project is intended for educational, portfolio, and research purposes.
