@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    container_name: n8n
+
+    environment:
+      - N8N_RESTRICT_FILE_ACCESS_TO=/files
+
+    ports:
+      - "5678:5678"
+
+    volumes:
+      - ./n8n_data:/files
+      - n8n_storage:/home/node/.n8n
+
+    restart: unless-stopped
+
+volumes:
+  n8n_storage:

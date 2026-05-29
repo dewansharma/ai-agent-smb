@@ -1,0 +1,31 @@
+ItemID,ItemName,Category,Supplier,UnitPrice,StockQuantity,ReorderLevel,LastRestocked
+101,Espresso Beans,Coffee Beans,BlueBottle Roasters,18.50,45,20,2026-05-20
+102,Whole Milk,Dairy,FarmFresh Dairy,4.25,12,10,2026-05-25
+103,Almond Milk,Dairy,Organic Valley,5.75,6,10,2026-05-24
+104,Croissant,Bakery,Sunrise Bakery,3.50,25,15,2026-05-26
+105,Blueberry Muffin,Bakery,Sunrise Bakery,3.25,18,10,2026-05-26
+106,Vanilla Syrup,Beverages,Torani Supplies,9.99,4,8,2026-05-23
+107,Chocolate Cookies,Snacks,SweetTreats Co,2.75,7,10,2026-05-21
+108,Green Tea,Beverages,TeaLeaf Imports,6.25,30,15,2026-05-25
+109,Caramel Syrup,Beverages,Torani Supplies,10.50,3,8,2026-05-22
+110,Cheddar Cheese,Dairy,FarmFresh Dairy,7.80,14,12,2026-05-24
+111,Bagels,Bakery,Sunrise Bakery,2.10,40,20,2026-05-27
+112,Cold Brew Concentrate,Beverages,BlueBottle Roasters,14.25,9,12,2026-05-25
+113,Oat Milk,Dairy,Organic Valley,5.95,5,10,2026-05-26
+114,Matcha Powder,Beverages,TeaLeaf Imports,22.50,16,8,2026-05-20
+115,Cinnamon Rolls,Bakery,Sunrise Bakery,4.75,11,10,2026-05-26
+116,Hazelnut Syrup,Beverages,Torani Supplies,10.25,2,8,2026-05-21
+117,Protein Bars,Snacks,FitFoods Inc,3.95,28,15,2026-05-24
+118,Greek Yogurt,Dairy,FarmFresh Dairy,1.99,9,12,2026-05-25
+119,Dark Roast Beans,Coffee Beans,BlueBottle Roasters,19.75,22,20,2026-05-23
+120,Lemon Tea,Beverages,TeaLeaf Imports,5.80,13,10,2026-05-24
+121,Chocolate Croissant,Bakery,Sunrise Bakery,4.20,6,12,2026-05-27
+122,Strawberry Smoothie Mix,Beverages,Smoothie Supply Co,12.50,8,10,2026-05-22
+123,Mocha Sauce,Beverages,Torani Supplies,11.25,1,6,2026-05-20
+124,Turkey Sandwich,Prepared Foods,FreshBites Kitchen,8.99,17,10,2026-05-26
+125,Chicken Wrap,Prepared Foods,FreshBites Kitchen,9.50,5,10,2026-05-25
+126,Energy Drink,Beverages,FitFoods Inc,3.25,35,15,2026-05-27
+127,Granola Cups,Snacks,FitFoods Inc,4.10,14,12,2026-05-24
+128,Latte Cups,Packaging,PackRight Supplies,0.25,120,50,2026-05-20
+129,Paper Straws,Packaging,PackRight Supplies,0.05,45,40,2026-05-21
+130,Napkins,Packaging,PackRight Supplies,0.02,200,100,2026-05-22

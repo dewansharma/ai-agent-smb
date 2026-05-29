@@ -1,0 +1,564 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        -64
+      ],
+      "id": "36abd17e-1ff9-494d-82eb-545801209d14",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/files/inventory_data.csv",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -80,
+        -64
+      ],
+      "id": "d089cc6b-16e8-4be6-bff3-e5af3e3f8719",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "options": {
+          "delimiter": ","
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        128,
+        -64
+      ],
+      "id": "d86ca1ee-ef90-4964-9193-c6fd7dc7d1bc",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "47d31ebe-8d58-4cc2-8bed-7a3afdce9a1b",
+              "name": "item_name",
+              "value": "={{ $json.ItemName }}",
+              "type": "string"
+            },
+            {
+              "id": "665718ab-9b43-4c49-9912-c397ade8782d",
+              "name": "current_stock",
+              "value": "={{ $json.StockQuantity }}",
+              "type": "number"
+            },
+            {
+              "id": "434ba76b-e1bb-4552-b3dd-ed6a1695f849",
+              "name": "threshold",
+              "value": "={{ $json.ReorderLevel }}",
+              "type": "number"
+            },
+            {
+              "id": "b1d7338d-e60e-48bb-aa1b-3bcca2f2f50b",
+              "name": "unit_price",
+              "value": "={{ $json.UnitPrice }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        336,
+        -64
+      ],
+      "id": "a03e42be-27f8-4df5-ad0b-889f721f6caf",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ee8bf109-db1f-4dbf-85f5-72bb39becf41",
+              "leftValue": "={{ $json.current_stock }}",
+              "rightValue": "={{ $json.threshold }}",
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        544,
+        -64
+      ],
+      "id": "dd34cdd9-c685-4586-932f-072c99eb404b",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "name"
+        },
+        "table": {
+          "__rl": true,
+          "value": "inventory_alerts",
+          "mode": "list",
+          "cachedResultName": "inventory_alerts"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ai_insight": "={{$json.ai_insight}}",
+            "current_stock": "={{$json.current_stock}}",
+            "threshold": "={{$json.threshold}}",
+            "unit_price": "={{$json.unit_price}}",
+            "item_name": "={{$json.item_name}}",
+            "supplier": "={{$json.Supplier}}",
+            "category": "={{$json.Category}}",
+            "risk_level": "={{$json.risk_level}}",
+            "urgency_score": "={{$json.urgency_score}}",
+            "estimated_stockout_days": "={{$json.estimated_stockout_days}}",
+            "operational_priority": "={{$json.operational_priority}}",
+            "business_impact": "={{$json.business_impact}}",
+            "recommendation": "={{$json.recommendation}}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "item_name",
+              "displayName": "item_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "supplier",
+              "displayName": "supplier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "current_stock",
+              "displayName": "current_stock",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "threshold",
+              "displayName": "threshold",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "unit_price",
+              "displayName": "unit_price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_insight",
+              "displayName": "ai_insight",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "risk_level",
+              "displayName": "risk_level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "urgency_score",
+              "displayName": "urgency_score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "operational_priority",
+              "displayName": "operational_priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "business_impact",
+              "displayName": "business_impact",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "recommendation",
+              "displayName": "recommendation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "estimated_stockout_days",
+              "displayName": "estimated_stockout_days",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1104,
+        -160
+      ],
+      "id": "615eac89-e2c1-4bc6-be69-3c34c34a4559",
+      "name": "Insert rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "sMVh4QonnmbDC6Yy",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        912,
+        -192
+      ],
+      "id": "e482d3f5-531c-4856-937d-ffcb9e9fef69",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are an AI operations analyst for a retail SMB business.\n\nAnalyze the inventory item and return ONLY valid JSON.\n\nRequired JSON structure:\n\n{\n\"risk_level\": \"Low | Medium | High | Critical\",\n\"urgency_score\": 1-10,\n\"operational_priority\": \"Low | Moderate | High | Immediate\",\n\"business_impact\": \"short operational/business impact\",\n\"recommendation\": \"specific reorder recommendation\",\n\"estimated_stockout_days\": number\n}\n\nInventory Data:\nItem Name: {{$json.item_name}}\nCategory: {{$json.Category}}\nSupplier: {{$json.Supplier}}\nCurrent Stock: {{$json.current_stock}}\nReorder Threshold: {{$json.threshold}}\nUnit Price: {{$json.unit_price}}\n\nAnalysis Rules:\n\n* Consider stock severity\n* Consider operational disruption risk\n* Consider urgency of reorder action\n* Keep business impact concise\n* Recommendation must be actionable\n* Return ONLY valid JSON\n* No markdown\n* No ```json blocks\n* No explanations"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        560,
+        160
+      ],
+      "id": "bc478721-dc72-4ba0-94e8-e994bd4c0f97",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "AK27eDJ8GlpYaWwj",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "dewansh.sharma.2002@gmail.com",
+        "toEmail": "dewansh.sharma.2002@gmail.com",
+        "subject": "=Low Stock Alert: {{$json.item_name}}",
+        "html": "=<h2>Inventory Alert</h2>\n\n<p><strong>Item:</strong> {{$json.item_name}}</p>\n\n<p><strong>Category:</strong> {{$json.category}}</p>\n\n<p><strong>Supplier:</strong> {{$json.supplier}}</p>\n\n<p><strong>Current Stock:</strong> {{$json.current_stock}}</p>\n\n<p><strong>Threshold:</strong> {{$json.threshold}}</p>\n\n<p><strong>Unit Price:</strong> ${{$json.unit_price}}</p>\n\n<hr>\n\n<h3>AI Recommendation</h3>\n\n<p style=\"white-space: pre-line;\">\n{{$json.ai_insight}}\n</p>\n\n<hr>\n\n<p><em>Generated automatically by AI Inventory Monitoring System</em></p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1264,
+        -272
+      ],
+      "id": "b51dc977-a082-425c-8d28-cd8e532b9ff0",
+      "name": "Send an Email",
+      "webhookId": "139c6373-827f-4a52-a905-be26c095df98",
+      "credentials": {
+        "smtp": {
+          "id": "LDMGY703qrRJVdEx",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a4a91fb4-ee70-4337-a0c4-15a5ac991919",
+              "name": "=risk_level",
+              "value": "={{ JSON.parse($json.output[0].content[0].text).risk_level }}",
+              "type": "string"
+            },
+            {
+              "id": "af12d1a4-3141-4636-a248-c74c67ebaed2",
+              "name": "=urgency_score",
+              "value": "={{ JSON.parse($json.output[0].content[0].text).urgency_score }}",
+              "type": "number"
+            },
+            {
+              "id": "c194aa47-7eaa-47d0-8112-12b344dfa66d",
+              "name": "=operational_priority",
+              "value": "={{ JSON.parse($json.output[0].content[0].text).operational_priority }}",
+              "type": "string"
+            },
+            {
+              "id": "cdfd138b-c024-42fd-a527-4841672c8390",
+              "name": "=business_impact",
+              "value": "={{ JSON.parse($json.output[0].content[0].text).business_impact }}",
+              "type": "string"
+            },
+            {
+              "id": "4c69ddac-59ea-4677-8d94-688c923a9ca5",
+              "name": "=recommendation",
+              "value": "={{ JSON.parse($json.output[0].content[0].text).recommendation }}",
+              "type": "string"
+            },
+            {
+              "id": "efb20796-4e50-49a7-971e-c8fbe219935c",
+              "name": "=estimated_stockout_days",
+              "value": "={{ JSON.parse($json.output[0].content[0].text).estimated_stockout_days }}",
+              "type": "number"
+            },
+            {
+              "id": "f2c50087-91d0-4c4e-bd65-90812d64e6eb",
+              "name": "=ai_insight",
+              "value": "={{\n\"Risk Level: \" + JSON.parse($json.output[0].content[0].text).risk_level + \"\\n\\n\" +\n\n\"Urgency Score: \" + JSON.parse($json.output[0].content[0].text).urgency_score + \"\\n\\n\" +\n\n\"Priority: \" + JSON.parse($json.output[0].content[0].text).operational_priority + \"\\n\\n\" +\n\n\"Business Impact: \" + JSON.parse($json.output[0].content[0].text).business_impact + \"\\n\\n\" +\n\n\"Recommendation: \" + JSON.parse($json.output[0].content[0].text).recommendation + \"\\n\\n\" +\n\n\"Estimated Stockout Days: \" + JSON.parse($json.output[0].content[0].text).estimated_stockout_days\n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        992,
+        112
+      ],
+      "id": "de080606-6f33-4938-a667-e14c4029979b",
+      "name": "Edit Fields Open AI Parsing"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields Open AI Parsing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert rows in a table": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields Open AI Parsing": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4987ebae-e1ae-4bf2-8523-dd477e82f5c5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "bfa07872829fa53b318a0dff0db511ccdf15a052ad8682711d2038784d5fd982"
+  },
+  "id": "3DhqFzvNuG5esf7V",
+  "tags": []
+}
