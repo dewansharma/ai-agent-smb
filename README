@@ -1,4 +1,12 @@
-# AI Agent for Small & Medium Businesses (SMBs)
+# 🚀 AI Agent for SMBs
+
+An AI-powered business intelligence and workflow automation platform that helps small businesses transform operational data into actionable insights.
+
+🌐 Live Demo: https://ai-agent-smb.vercel.app
+
+## Tech Stack
+
+React • Vite • TailwindCSS • n8n • PostgreSQL • Supabase • OpenAI • Vercel
 
 ## Overview
 
