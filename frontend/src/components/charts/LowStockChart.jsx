@@ -5,6 +5,7 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
+  CartesianGrid,
 } from "recharts";
 
 const data = [
@@ -19,9 +20,9 @@ const data = [
 
 function LowStockChart() {
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 mt-8">
+    <div className="bg-[#081224] border border-blue-900/30 rounded-2xl p-6 mt-8 shadow-[0_0_20px_rgba(59,130,246,0.08)]">
 
-      <h2 className="text-xl font-semibold mb-6">
+      <h2 className="text-xl font-semibold mb-6 text-white">
         Low Stock Alerts Trend
       </h2>
 
@@ -31,17 +32,43 @@ function LowStockChart() {
 
           <LineChart data={data}>
 
-            <XAxis dataKey="day" stroke="#94a3b8" />
+            <CartesianGrid
+              stroke="#1e3a8a"
+              strokeOpacity={0.25}
+            />
 
-            <YAxis stroke="#94a3b8" />
+            <XAxis
+              dataKey="day"
+              stroke="#94a3b8"
+            />
 
-            <Tooltip />
+            <YAxis
+              stroke="#94a3b8"
+            />
+
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "#081224",
+                border: "1px solid rgba(59,130,246,0.3)",
+                borderRadius: "12px",
+                color: "#fff",
+              }}
+            />
 
             <Line
               type="monotone"
               dataKey="alerts"
               stroke="#3b82f6"
               strokeWidth={3}
+              dot={{
+                fill: "#60a5fa",
+                strokeWidth: 2,
+                r: 4,
+              }}
+              activeDot={{
+                r: 7,
+                fill: "#3b82f6",
+              }}
             />
 
           </LineChart>

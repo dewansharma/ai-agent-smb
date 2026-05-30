@@ -13,7 +13,7 @@ function StatCard({
 
   return (
 
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+    <div className="bg-[#081224] border border-blue-900/40 rounded-2xl p-6 shadow-[0_0_20px_rgba(59,130,246,0.08)] hover:shadow-[0_0_25px_rgba(59,130,246,0.18)] transition-all duration-300">
 
       <div className="flex justify-between items-start">
 
@@ -33,10 +33,10 @@ function StatCard({
 
         </div>
 
-        <div className="bg-slate-800 p-4 rounded-2xl">
+        <div className="bg-blue-950/50 p-4 rounded-2xl border border-blue-900/30">
 
           {Icon && (
-            <Icon className="text-blue-400 w-7 h-7" />
+            <Icon className="text-blue-500 w-7 h-7" />
           )}
 
         </div>

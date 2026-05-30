@@ -2,13 +2,11 @@ import Sidebar from "../components/sidebar/Sidebar";
 
 function DashboardLayout({ children }) {
   return (
-    <div className="flex min-h-screen bg-slate-950 text-white">
-      
-      {/* Sidebar */}
+    <div className="flex min-h-screen bg-[#020817] text-white">
+
       <Sidebar />
 
-      {/* Main Content */}
-      <main className="flex-1 p-6 overflow-y-auto">
+      <main className="flex-1 p-8 overflow-y-auto">
         {children}
       </main>
 
